@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Arguments -->
+    <arg name="map_frame" default="map"/>
+    <arg name="odom_frame" default="odom"/>
+    <arg name="scan_topic" default="/robot/front_lidar/scan"/>
+    <arg name="base_frame" default="base_footprint"/>
+    <arg name="scan_subscriber_queue_size" default="5"/>
+    <arg name="map_size" default="1024"/>
+    <arg name="pub_map_odom_transform" default="true"/>
+    <arg name="tf_map_scanmatch_transform_frame_name" default="scanmatcher_frame"/>
+
+    <!-- Spawn the robot in a maze -->
+    <include file="$(find agv_gazebo)/launch/maze.launch"/>
+
+    <!-- Joint State Publisher with unique name -->
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"></node>
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		<param name="use_gui" value="true"/>
+	</node>
+
+    <!-- Launch RViz for visualization -->
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find agv_gazebo)/rviz/agv_rviz.rviz"/> -->
+
+    <!-- Hector Mapping (SLAM) Node -->
+    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+        <!-- Frame parameters -->
+        <param name="map_frame" value="$(arg map_frame)"/>
+        <param name="odom_frame" value="$(arg odom_frame)"/>
+        <param name="base_frame" value="$(arg base_frame)"/>
+
+        <!-- Transform-related parameters -->
+        <param name="use_tf_scan_transformation" value="true"/>
+        <param name="use_tf_pose_start_estimate" value="false"/>
+        <param name="pub_map_scanmatch_transform" value="true"/>
+        <param name="pub_map_odom_transform" value="$(arg pub_map_odom_transform)"/>
+        <param name="tf_map_scanmatch_transform_frame_name" value="$(arg tf_map_scanmatch_transform_frame_name)"/>
+
+        <!-- Map parameters -->
+        <param name="map_resolution" value="0.050"/>
+        <param name="map_size" value="$(arg map_size)"/>
+        <param name="map_start_x" value="0.5"/>
+        <param name="map_start_y" value="0.5"/>
+        <param name="map_multi_res_levels" value="2"/>
+
+        <!-- Map update parameters -->
+        <param name="update_factor_free" value="0.4"/>
+        <param name="update_factor_occupied" value="0.9"/>
+        <param name="map_update_distance_thresh" value="0.4"/>
+        <param name="map_update_angle_thresh" value="0.9"/>
+        <param name="map_pub_period" value="1"/>
+        <param name="laser_z_min_value" value="-1"/>
+        <param name="laser_z_max_value" value="1"/>
+        <param name="laser_min_dist" value="0.12"/>
+        <param name="laser_max_dist" value="80.0"/>
+
+
+        <!-- Advertising configuration -->
+        <param name="advertise_map_service" value="true"/>
+        <param name="scan_subscriber_queue_size" value="$(arg scan_subscriber_queue_size)"/>
+        <param name="scan_topic" value="$(arg scan_topic)"/>
+        
+        <!-- Debug parameters -->
+        <param name="output_timing" value="false"/>
+        <param name="pub_drawings" value="true"/>
+        <param name="pub_debug_output" value="true"/>
+    </node>
+</launch>

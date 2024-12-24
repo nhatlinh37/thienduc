@@ -1,0 +1,8 @@
+prefix=/home/linh/catkinws3/install
+
+Name: agv_slam_gmapping
+Description: Description of agv_slam_gmapping
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

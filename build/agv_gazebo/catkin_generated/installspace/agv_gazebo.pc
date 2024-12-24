@@ -1,0 +1,8 @@
+prefix=/home/linh/catkinws3/install
+
+Name: agv_gazebo
+Description: Description of agv_gazebo
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

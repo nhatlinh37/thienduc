@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="robotv3">
+  <link name="world"/>
+  <!-- /////////////////////////base link/////////////////////////-->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.140000952371063 0.00451310766751525 0.0915757789967482" rpy="0 0 0" />
+      <mass value="6.47533924385785" />
+      <inertia ixx="0.0302625304757238" ixy="1.94487781237177E-07" ixz="-1.9192528153292E-07" iyy="0.092475795669923" iyz="7.93867078290133E-08" izz="0.103362118587658" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="Rmotor">
+    <inertial>
+      <origin xyz="-6.77236045021345E-15 7.38177127135309E-06 -0.0303894831621584" rpy="0 0 0" />
+      <mass value="0.989823090734284" />
+      <inertia ixx="0.00167927627906862" ixy="-3.96697086748782E-08" ixz="-1.21932956844046E-18" iyy="0.00167924910773203" iyz="3.99026302025336E-07" izz="0.00288692436393867" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/Rmotor.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/Rmotor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Rmotor-jt" type="continuous">
+    <origin xyz="0.140750000000001 -0.219630000000005 -0.0359999999999837" rpy="1.57079632679484 0 0" />
+    <parent link="base_link" />
+    <child link="Rmotor" />
+    <axis xyz="0 0 1" />
+  </joint>
+  <link name="Lmotor">
+    <inertial>
+      <origin xyz="-0.00150000000000572 7.38177127235229E-06 0.0303894831621573" rpy="0 0 0" />
+      <mass value="0.989823090734153" />
+      <inertia ixx="0.00167927627906842" ixy="3.96697086918246E-08" ixz="-7.95229096556754E-18" iyy="0.00167924910773175" iyz="-3.99026302030596E-07" izz="0.0028869243639382" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/Lmotor.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/Lmotor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="Lmotor-jt" type="continuous">
+    <origin xyz="0.140750000000012 0.219499999999995 -0.03600000000001" rpy="1.57079632679484 0 0" />
+    <parent link="base_link" />
+    <child link="Lmotor" />
+    <axis xyz="0 0 1" />
+  </joint>
+  <link name="lidar">
+    <inertial>
+      <origin xyz="0.00676628412110791 -0.0223997547966232 0.000207944111953351" rpy="0 0 0" />
+      <mass value="1.32944589754502" />
+      <inertia ixx="0.000612752010300123" ixy="0.000158232462510537" ixz="8.01141141657016E-07" iyy="0.00109574614926809" iyz="3.09663447837254E-06" izz="0.000957691135206995" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/lidar.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="lidar-jt" type="fixed">
+    <origin xyz="0.132999999999998 0.000115901455793238 0.282700000000003" rpy="1.57079632679484 0 0" />
+    <parent link="base_link" />
+    <child link="lidar" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="BLcaster">
+    <inertial>
+      <origin xyz="-0.000930000000013198 3.01980662698043E-14 -0.00699999999999325" rpy="0 0 0" />
+      <mass value="0.0148770120110745" />
+      <inertia ixx="1.53078254838952E-06" ixy="-1.47816556150456E-22" ixz="-2.55582044176612E-20" iyy="1.53078254838952E-06" iyz="5.88405645513596E-20" izz="2.57558270441727E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/BLcaster.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/BLcaster.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="BLcaster-jt" type="fixed">
+    <origin xyz="-0.0946131497482311 0.113370685518284 -0.0989800000000416" rpy="1.57079632679484 0 0" />
+    <parent link="base_link" />
+    <child link="BLcaster" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="BRcaster">
+    <inertial>
+      <origin xyz="-1.19904086659517E-14 2.96429547574917E-14 -0.00699999999999795" rpy="0 0 0" />
+      <mass value="0.0148770120110745" />
+      <inertia ixx="1.53078254838952E-06" ixy="-4.87703535040726E-22" ixz="-2.52097963368536E-20" iyy="1.53078254838952E-06" iyz="5.86858533465206E-20" izz="2.57558270441727E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/BRcaster.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/BRcaster.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="BRcaster-jt" type="fixed">
+    <origin xyz="-0.0946131497482422 -0.123629314481715 -0.0989800000000141" rpy="1.57079632679484 0 0" />
+    <parent link="base_link" />
+    <child link="BRcaster" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="FLcaster">
+    <inertial>
+      <origin xyz="-2.66453525910038E-15 -8.21565038222616E-15 0.00699999999998256" rpy="0 0 0" />
+      <mass value="0.0148770120110745" />
+      <inertia ixx="1.53078254838952E-06" ixy="4.48721787035506E-22" ixz="-3.28861530613501E-20" iyy="1.53078254838951E-06" iyz="2.89662174250623E-21" izz="2.57558270441726E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/FLcaster.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/FLcaster.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FLcaster-jt" type="fixed">
+    <origin xyz="0.375543149748256 0.123629314481695 -0.0989800000000121" rpy="1.57079632679484 0 0" />
+    <parent link="base_link" />
+    <child link="FLcaster" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="FRcaster">
+    <inertial>
+      <origin xyz="-7.54951656745106E-15 -1.0547118733939E-14 0.243999999999984" rpy="0 0 0" />
+      <mass value="0.0148770120110745" />
+      <inertia ixx="1.53078254838952E-06" ixy="7.00582450803852E-22" ixz="-3.04356913055372E-20" iyy="1.53078254838952E-06" iyz="2.91189916408321E-21" izz="2.57558270441727E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/FRcaster.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotv3/meshes/FRcaster.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="FRcaster-jt" type="fixed">
+    <origin xyz="0.375543149748256 0.123629314481695 -0.0989800000000121" rpy="1.57079632679484 0 0" />
+    <parent link="base_link" />
+    <child link="FRcaster" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <joint name="base_link_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.17"/>
+  </joint>
+
+  <!-- Add transmissions for existing joints -->
+
+  <transmission name="wheel_right_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Rmotor-jt">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wheel_right_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="wheel_left_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Lmotor-jt">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wheel_leftt_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="BLcaster_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="BLcaster-jt">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="BLcaster">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="BRcaster_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="BRcaster-jt">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="BRcaster">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="FLcaster_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="FLcaster-jt">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="FLcaster">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="FRcaster_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="FRcaster-jt">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="FRcaster">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="lidar_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lidar-jt">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lidar">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- Add Gazebo plugins and properties -->
+  <gazebo>
+    <plugin name="control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="base_link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="BLcaster">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="BRcaster">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="FLcaster">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="FRcaster">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="lidar">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="Lmotor">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="Rmotor">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+</robot>

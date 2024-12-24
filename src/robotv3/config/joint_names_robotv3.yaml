@@ -1,0 +1,9 @@
+robot_arm_controller:
+  type: "position_controllers/JointTrajectoryController"
+  joints: [BLcaster-jt, BRcaster-jt, FLcaster-jt, FRcaster-jt, lidar-jt, Lmotor-jt, Rmotor-jt, imu-jt]
+
+joint_state_controller:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 50
+
+

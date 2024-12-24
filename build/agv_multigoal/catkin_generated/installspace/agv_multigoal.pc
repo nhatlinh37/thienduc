@@ -1,0 +1,8 @@
+prefix=/home/linh/catkinws3/install
+
+Name: agv_multigoal
+Description: Description of agv_multigoal
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

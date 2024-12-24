@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="catkinws3">
+
+    <xacro:include filename="$(find agv_description)/urdf/agv.gazebo.xml"/>
+
+    <!-- base_footprint -->
+    <link name="base_footprint"/>
+
+    <!-- base_link -->
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0.138621950270377 2.91906096794303E-07 0.0179577331652797" rpy="0 0 0" />
+            <mass value="3.97166544078829" />
+            <inertia ixx="0.0158847293453143" ixy="-4.2298875873717E-07" ixz="-0.00052258251235648" iyy="0.0368921552122701" iyz="7.9566475845211E-08" izz="0.0515049917598545" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://agv_description/meshes/base_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://agv_description/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+
+    <!-- base_footprint -> base_link joint -->
+    <joint name="base_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+    </joint>
+
+    <!-- Wheel and joint macro -->
+    <xacro:include filename="$(find agv_description)/urdf/motor.urdf.xacro"/>
+
+    <!-- Create left and right wheel/joint -->
+    <xacro:motor name="R" inertial_xyz="2.55351295663786E-15 0.0299988941516324  -1.82076576038526E-14" joint_xyz="0.137499999999999 -0.219630000000005 -0.03499999999998" />
+    <xacro:motor name="L" inertial_xyz="7.105427357601E-15 -0.0299988941516324 -9.99200722162641E-16" joint_xyz="0.137500000000089 0.219500000000043 -0.035000000000165" />
+
+
+    <!-- Caster wheel and joint macro -->
+    <xacro:include filename="$(find agv_description)/urdf/caster.urdf.xacro"/>
+
+    <!-- Create 3 caster wheels -->
+    <xacro:caster name="BL" inertial_xyz="-2.22044604925031E-16 -0.00699999999999888 0.08" joint_xyz="-0.0980431497482455 0.127370685518273 -0.11"/>
+    <xacro:caster name="BR" inertial_xyz="-4.44089209850063E-16 -0.00699999999999884 0.08" joint_xyz="-0.0971131497482585 -0.109629314481721 -0.011"/>
+    <xacro:caster name="FL" inertial_xyz="-3.33066907387547E-16 -0.0069999999999989 0.08" joint_xyz="0.373043149748246 0.123629314481709 -0.11"/>
+    <xacro:caster name="FR" inertial_xyz="-1.18793863634892E-14 -0.244000000000001 0.08" joint_xyz="0.373043149748246 0.123629314481709 -0.11"/>
+
+    <!-- Create lidars -->
+    <xacro:include filename="$(find agv_description)/urdf/lidar.urdf.xacro"/>
+    <xacro:lidar inertial_xyz="-0.0048886274400578 -6.93889390390723E-16 -0.0129807987682949" joint_xyz="0.237558564211312 0 0.1292" joint_rpy="0 0 0"/>
+
+    <!-- Create imu -->
+    <xacro:include filename="$(find agv_description)/urdf/imu.urdf.xacro"/>
+    <xacro:imu inertial_xyz="-0.000209392145982146 0.00203777840465308 -0.00554991758455003" joint_xyz="0.350009083694646 -0.0954642238382053 0.0190199999886995" joint_rpy="0 0 0"/>
+
+</robot>

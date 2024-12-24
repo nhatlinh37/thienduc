@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="caster">
+    <xacro:macro name="caster" params="name inertial_xyz joint_xyz">
+        <!-- Caster link -->
+        <link name="${name}caster">
+            <inertial>
+                <origin xyz="${inertial_xyz}" rpy="0 0 0" />
+                <mass value="0.0148770120110745" />
+
+                <xacro:if value="${name == 'BL'}">
+                    <inertia
+                        ixx="1.53078254838952E-06"
+                        ixy="4.9774034321692E-20"
+                        ixz="-1.49360626631541E-22"
+                        iyy="2.57558270441727E-06"
+                        iyz="-1.20886726192859E-19"
+                        izz="1.53078254838952E-06" />
+                </xacro:if>
+
+                <xacro:if value="${name == 'BR'}">
+                    <inertia
+                        ixx="1.53078254838952E-06"
+                        ixy="4.94263982761229E-20"
+                        ixz="-4.8653538476786E-22"
+                        iyy="2.57558270441727E-06"
+                        iyz="-1.2073182197921E-19"
+                        izz="1.53078254838952E-06" />
+                </xacro:if>
+                <xacro:if value="${name == 'FL'}">
+                    <inertia
+                        ixx="1.53078254838952E-06"
+                        ixy="5.71019829653809E-20"
+                        ixz="3.66389743395945E-22"
+                        iyy="2.57558270441727E-06"
+                        iyz="-6.49425903751959E-20"
+                        izz="1.53078254838952E-06" />
+                </xacro:if>
+
+                <xacro:if value="${name == 'FR'}">
+                    <inertia
+                        ixx="1.53078254838952E-06"
+                        ixy="5.46017249366924E-20"
+                        ixz="7.00582450800531E-22"
+                        iyy="2.57558270441727E-06"
+                        iyz="-6.49455152329588E-20"
+                        izz="1.53078254838952E-06" />
+                </xacro:if>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://agv_description/meshes/${name}caster.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://agv_description/meshes/${name}caster.STL" />
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- Caster Joint -->
+        <joint name="${name}caster-jt" type="fixed">
+            <origin xyz="${joint_xyz}" rpy="0 0 0" />
+            <parent link="base_link" />
+            <child link="${name}caster" />
+            <axis xyz="0 0 0" />
+        </joint>
+    </xacro:macro>
+
+   
+</robot>

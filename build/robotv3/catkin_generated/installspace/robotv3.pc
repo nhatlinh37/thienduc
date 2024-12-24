@@ -1,0 +1,8 @@
+prefix=/home/linh/catkinws3/install
+
+Name: robotv3
+Description: Description of robotv3
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs roscpp rospy std_msgs

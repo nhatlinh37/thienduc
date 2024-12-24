@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="motor">
+    <xacro:macro name="motor" params="name inertial_xyz joint_xyz">
+        <!-- Motor link -->
+        <link name="${name}motor">
+            <inertial>
+                <origin xyz="${inertial_xyz}" rpy="0 0 0" />
+                <mass value="0.981706452120763" />
+                <xacro:if value="${name == 'R'}">
+                    <inertia
+                        ixx="0.00165290266939061"
+                        ixy="2.94198682908582E-17"
+                        ixz="2.72355132399867E-08"
+                        iyy="0.00287871159387479"
+                        iyz="-7.35154830854112E-17"
+                        izz="0.00165293437442312" />
+                </xacro:if>
+                <xacro:if value="${name == 'L'}">
+                    <inertia
+                        ixx="0.00165290508243385"
+                        ixy="3.08359520920725E-17"
+                        ixz="1.9434755833785E-09"
+                        iyy="0.00287869363117817"
+                        iyz="-6.76177339940693E-17"
+                        izz="0.00165291212237496" />
+                </xacro:if>
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://agv_description/meshes/${name}motor.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.2 0.2 0.2 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://agv_description/meshes/${name}motor.STL" />
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- Motor Joint -->
+        <joint name="${name}motor-jt" type="continuous">
+            <origin xyz="${joint_xyz}" rpy="0 0 0" />
+            <parent link="base_link" />
+            <child link="${name}motor" />
+            <axis xyz="0 1 0" />
+        </joint>
+    </xacro:macro>
+</robot>

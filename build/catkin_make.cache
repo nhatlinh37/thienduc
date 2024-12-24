@@ -1,0 +1,2 @@
+agv_description:agv_gazebo:agv_multigoal:agv_navigation:agv_slam_gmapping:robotv3:teleop_twist_keyboard
+-DCATKIN_DEVEL_PREFIX=/home/linh/catkinws3/devel -DCMAKE_INSTALL_PREFIX=/home/linh/catkinws3/install -G Unix Makefiles

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lidar">
+    <xacro:macro name="lidar" params="inertial_xyz joint_xyz joint_rpy">
+        <!-- Lidar link -->
+        <link name="lidar">
+            <inertial>
+                <origin xyz="${inertial_xyz}" rpy="0 0 0" />
+                <mass value="0.0916760093130727" />
+                <inertia
+        ixx="3.50233287131223E-05"
+        ixy="-1.85937449002437E-19"
+        ixz="-2.78725851250563E-06"
+        iyy="3.42747449012816E-05"
+        iyz="1.5928067702973E-18"
+        izz="6.0266034889394E-05" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://agv_description/meshes/lidar.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://agv_description/meshes/lidar.STL" />
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- Lidar Joint -->
+        <joint name="lidar-jt" type="fixed">
+            <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
+            <parent link="base_link" />
+            <child link="lidar" />
+            <axis xyz="0 0 1" />
+        </joint>
+    </xacro:macro>
+</robot>
